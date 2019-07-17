@@ -2,14 +2,10 @@
 
 namespace PDF_conversion.src.interfaces
 {
-    public abstract class DataParserBase
+    public abstract class DataTemplateBase
     {
-        public DataParserBase()
-        {
-
-        }
-
         public abstract DataFormatBase Parse(DataSource source);
         protected DataFormatBase formatBase;
+        public abstract string GetTemplateName();
     }
 }

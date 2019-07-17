@@ -5,7 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <Style TargetType="TabControl">
+            <Setter Property="FontFamily" Value="Verdana"/>
+        </Style>
+    </Window.Resources>
 
+    <Grid Background="Black">
+        <TabControl>
+            <TabItem Header="Конвертация">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="10" x:Name="Templates">
+                        <Label Content="Выберите шаблон файла"/>
+                    </StackPanel>
+                    <DockPanel Grid.Row="1" Margin="10">
+                        <ListView DockPanel.Dock="Right" Width="600" x:Name="FilesList"/>
+                        <StackPanel DockPanel.Dock="Left">
+                            <Button Content="Добавить файл" Click="AddFileButton"/>
+                            <Button Content="Удалить файл" Click="RemoveFileButton"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <Button Content="Конвертировать" Click="ConvertButton" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="5" Margin="10"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Настройки">
+
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

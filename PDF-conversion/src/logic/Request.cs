@@ -7,9 +7,9 @@ namespace PDF_conversion.src.Logic
     public class Request
     {
         private DataSource dataSource;
-        private DataParserBase parser;
+        private DataTemplateBase parser;
 
-        public Request(DataSource dataSource, DataParserBase parser)
+        public Request(DataSource dataSource, DataTemplateBase parser)
         {
             this.dataSource = dataSource;
             this.parser = parser;
@@ -28,7 +28,7 @@ namespace PDF_conversion.src.Logic
          */
         public void Execute()
         {
-            Logger.Log("Started request at: " + DateTime.Now.ToShortDateString());
+            Logger.Log("Started request at: " + DateTime.Now.ToString());
 
             try { parser.Parse(dataSource); }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace PDF_conversion.src.Logic
                 Logger.Log("Stack trace: " + ex.StackTrace);
             }
 
-            Logger.Log("Finished request at: " + DateTime.Now.ToShortDateString());
+            Logger.Log("Finished request at: " + DateTime.Now.ToString());
         }
     }
 }
