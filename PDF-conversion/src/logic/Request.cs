@@ -7,9 +7,9 @@ namespace PDF_conversion.src.Logic
     public class Request
     {
         private DataSource dataSource;
-        private IDataParser parser;
+        private DataParserBase parser;
 
-        public Request(DataSource dataSource, IDataParser parser)
+        public Request(DataSource dataSource, DataParserBase parser)
         {
             this.dataSource = dataSource;
             this.parser = parser;

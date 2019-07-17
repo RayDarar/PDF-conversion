@@ -11,10 +11,12 @@ namespace PDF_conversion.src.logic
         private DataSourceType type = DataSourceType.single;
         private List<FileInfo> files;
 
-        public DataSource(DataSourceType type)
+        public DataSource(string[] data, DataSourceType type)
         {
             this.type = type;
             files = new List<FileInfo>();
+            foreach (var path in data)
+                files.Add(new FileInfo(path));
         }
 
         public List<FileInfo> GetFiles() => throw new NotImplementedException();
