@@ -19,7 +19,12 @@ namespace PDF_conversion.src.Logic
          * Executing the request
          * 
          * Algorithm:
-         * In the view we choosed 
+         * In the view we choosed data source (ex PDF file), multiple files or single file
+         * Also user choosed DataFormat or file template
+         * Depending on such template, we'll execute different parsers
+         * Parser will give us the result in chosen DataFormat
+         * This result will go to GenerateModel class, which will generate excel depending on DataFormat
+         * 
          */
         public void Execute()
         {
@@ -32,7 +37,6 @@ namespace PDF_conversion.src.Logic
                 Logger.Log("Exception: " + ex.Message);
                 Logger.Log("Stack trace: " + ex.StackTrace);
             }
-
 
             Logger.Log("Finished request at: " + DateTime.Now.ToShortDateString());
         }
