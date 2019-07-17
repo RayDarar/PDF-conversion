@@ -16,5 +16,7 @@ namespace PDF_conversion.src.logic
         }
 
         public List<FileInfo> GetFiles() => throw new NotImplementedException();
+
+        public string GetName() => files.Count != 0 ? files[0].Name : "Таблица";
     }
 }

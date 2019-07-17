@@ -105,8 +105,8 @@ namespace PDF_conversion
             };
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-
-                GenerateModel.Generate(dialog.FileName, parser.Parse(source));
+                GenerateModel.Generate(dialog.FileName, source.GetName(), parser.Parse(source));
+                MessageBox.Show("Успешно", "Информация");
             }
             else
                 MessageBox.Show("Отмена операции", "Информация");

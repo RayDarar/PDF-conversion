@@ -9,7 +9,7 @@ namespace PDF_conversion.src.logic
 {
     public class GenerateModel
     {
-        public static void Generate(string fileName, DataFormatBase dataFormat)
+        public static void Generate(string directory, string fileName, DataFormatBase dataFormat)
         {
 
         }
