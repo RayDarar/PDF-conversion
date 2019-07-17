@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PDF_conversion.src.logic;
 
 namespace PDF_conversion.src.interfaces
 {
     public interface IDataParser
     {
-
+        DataFormatBase Parse(DataSource source);
     }
 }
