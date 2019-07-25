@@ -8,6 +8,5 @@ namespace PDF_conversion.src.interfaces
         void SetTemplate(ITemplate template);
         void SetFiles(FileInfo[] files);
         bool Convert();
-        void Log();
     }
 }

@@ -35,9 +35,19 @@
             </TabItem>
 
             <TabItem Header="Настройки">
-                <StackPanel Grid.Row="0" Margin="10" x:Name="ConversionSources">
-                    <Label Content="Выберите источник конвертации"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="10" x:Name="ConversionSources" ScrollViewer.CanContentScroll="True">
+                        <Label Content="Выберите источник конвертации"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <TextBox Height="30" FontFamily="Consolas" FontSize="20" Margin="10" x:Name="Settings"/>
+                        <Button Content="Сохранить" Margin="10" HorizontalAlignment="Left" Click="SaveSettings"/>
+                    </StackPanel>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

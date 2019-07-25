@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Linq;
 
 namespace PDF_conversion
 {
@@ -72,6 +73,34 @@ namespace PDF_conversion
             foreach (var source in conversionSources)
                 ConversionSources.Children.Add(new RadioButton() { Content = source.GetName(), GroupName = "Source Group", IsChecked = true });
         }
+        private void SaveSettings(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string[] pairs = Settings.Text.Split(',');
+
+                Dictionary<string, string> temp = new Dictionary<string, string>();
+
+                foreach (string pair in pairs)
+                {
+                    string data = pair.Trim();
+                    string key = data.Split(':')[0], value = data.Split(':')[1];
+                    temp[key] = value;
+                }
+
+                foreach (var data in temp)
+                    DataModule.data[data.Key] = data.Value;
+
+                MessageBox.Show("Настройки сохранены", "Успешно");
+                DataModule.Save();
+                Settings.Text = "";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Неверный формат", "Ошибка");
+            }
+
+        }
 
         private void AddFileButton(object sender, RoutedEventArgs e)
         {
@@ -101,13 +130,19 @@ namespace PDF_conversion
                 MessageBox.Show("Все файлы распологаются на рабочем столе", "Успешно");
             else
                 MessageBox.Show("Что-то пошло не так....\nВы можете просмотреть информацию в логах программы", "Ошибка");
-            request.Log();
         }
         private void ConvertButton(object sender, RoutedEventArgs e)
         {
-            // Invoke Convert()
+            // Getting template
+            var templateName = Templates.Children.OfType<RadioButton>().First(f => f.IsChecked == true).Content.ToString();
+            var template = templates.First(f => f.GetTemplateName() == templateName);
 
-            MessageBox.Show("Выберите шаблон", "Ошибка");
+            var sourceName = ConversionSources.Children.OfType<RadioButton>().First(f => f.IsChecked == true).Content.ToString();
+            var source = conversionSources.First(f => f.GetName() == sourceName);
+
+            var files = this.files.Select(path => new FileInfo(path)).ToArray();
+
+            Convert(template, source, files);
         }
     }
 }
