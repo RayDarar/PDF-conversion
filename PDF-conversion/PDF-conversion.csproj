@@ -69,14 +69,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\interfaces\DataFormatBase.cs" />
-    <Compile Include="src\interfaces\DataTemplateBase.cs" />
-    <Compile Include="src\logic\DataSource.cs" />
-    <Compile Include="src\logic\GenerateModel.cs" />
+    <Compile Include="src\interfaces\IConversionSource.cs" />
+    <Compile Include="src\interfaces\IRequest.cs" />
+    <Compile Include="src\interfaces\ITemplate.cs" />
     <Compile Include="src\logic\Logger.cs" />
     <Compile Include="src\logic\Request.cs" />
-    <Compile Include="src\templates\Application7Template.cs" />
-    <Compile Include="src\templates\Application8Template.cs" />
+    <Compile Include="src\templates\Application7.cs" />
+    <Compile Include="src\templates\Application8.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

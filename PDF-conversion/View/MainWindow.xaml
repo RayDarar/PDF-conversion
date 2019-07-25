@@ -35,7 +35,9 @@
             </TabItem>
 
             <TabItem Header="Настройки">
-
+                <StackPanel Grid.Row="0" Margin="10" x:Name="ConversionSources">
+                    <Label Content="Выберите источник конвертации"/>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>
