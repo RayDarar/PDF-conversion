@@ -12,7 +12,7 @@ namespace PDF_conversion.src.logic
     {
         public bool Convert()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public void Log()

@@ -41,6 +41,9 @@
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -72,8 +75,11 @@
     <Compile Include="src\interfaces\IConversionSource.cs" />
     <Compile Include="src\interfaces\IRequest.cs" />
     <Compile Include="src\interfaces\ITemplate.cs" />
+    <Compile Include="src\logic\DataModule.cs" />
     <Compile Include="src\logic\Logger.cs" />
     <Compile Include="src\logic\Request.cs" />
+    <Compile Include="src\logic\Startup.cs" />
+    <Compile Include="src\sources\ZamzarSource.cs" />
     <Compile Include="src\templates\Application7.cs" />
     <Compile Include="src\templates\Application8.cs" />
     <Compile Include="View\MainWindow.xaml.cs">

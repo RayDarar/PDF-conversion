@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace PDF_conversion.src.interfaces
 {
@@ -8,5 +9,6 @@ namespace PDF_conversion.src.interfaces
     public interface IConversionSource
     {
         string FromPdfToTxt(FileInfo file);
+        string GetName();
     }
 }

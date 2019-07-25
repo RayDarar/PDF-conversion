@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using PDF_conversion.src.interfaces;
 using PDF_conversion.src.logic;
+using PDF_conversion.src.sources;
 using PDF_conversion.src.templates;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,9 @@ namespace PDF_conversion
             Logger.Log("Time: " + DateTime.Now.ToString());
             #endregion
 
+            // Loading json settings
+            Startup.Load();
+
             InitializeComponent();
             FilesList.ItemsSource = files;
 
@@ -39,6 +43,10 @@ namespace PDF_conversion
             templates.Add(new Application7());
             templates.Add(new Application8());
             SetTemplates();
+
+            // Linking Conversion sources
+            conversionSources.Add(new ZamzarSource());
+            SetConversionSources();
         }
 
         protected override void OnClosed(EventArgs e)
@@ -57,7 +65,12 @@ namespace PDF_conversion
         private void SetTemplates()
         {
             foreach (var template in templates)
-                Templates.Children.Add(new RadioButton() { Content = template.GetTemplateName(), GroupName = "Template Group" });
+                Templates.Children.Add(new RadioButton() { Content = template.GetTemplateName(), GroupName = "Template Group", IsChecked = true });
+        }
+        private void SetConversionSources()
+        {
+            foreach (var source in conversionSources)
+                ConversionSources.Children.Add(new RadioButton() { Content = source.GetName(), GroupName = "Source Group", IsChecked = true });
         }
 
         private void AddFileButton(object sender, RoutedEventArgs e)
@@ -84,12 +97,16 @@ namespace PDF_conversion
             request.SetTemplate(template);
             request.SetConversionSource(conversionSource);
             request.SetFiles(files);
-            request.Convert();
+            if (request.Convert())
+                MessageBox.Show("Все файлы распологаются на рабочем столе", "Успешно");
+            else
+                MessageBox.Show("Что-то пошло не так....\nВы можете просмотреть информацию в логах программы", "Ошибка");
             request.Log();
         }
         private void ConvertButton(object sender, RoutedEventArgs e)
         {
             // Invoke Convert()
+
             MessageBox.Show("Выберите шаблон", "Ошибка");
         }
     }
