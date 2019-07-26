@@ -19,19 +19,30 @@ namespace PDF_conversion.src.sources
             const string url = "https://sandbox.zamzar.com/v1/jobs/";
 
             var job = Upload(apiKey, url, file.FullName, "txt").Result;
-        Query:
 
+        Query:
+            // Check if it's done
             var query = Query(apiKey, url + job["id"].ToString()).Result;
+
             var status = query["status"].ToString().Replace("\"", "");
+
             if (status == "successful")
             {
+                // Download the file
 
+                string contentUrl = "https://sandbox.zamzar.com/v1/files/" + query["target_files"][0]["id"].ToString() + "/content";
+
+                Download(apiKey, contentUrl).Wait();
+
+                return result;
             }
-            else
+            else if (status == "converting")
                 goto Query;
-
-            throw new NotImplementedException();
+            else
+                throw new Exception("Conversion failed");
         }
+
+        private static string result = "";
 
         private static async Task<JsonValue> Upload(string key, string url, string sourceFile, string targetFormat)
         {
@@ -59,6 +70,18 @@ namespace PDF_conversion.src.sources
                 string data = await content.ReadAsStringAsync();
                 return JsonValue.Parse(data);
             }
+        }
+        
+        private static async Task<string> Download(string key, string url)
+        {
+            using (HttpClientHandler handler = new HttpClientHandler { Credentials = new NetworkCredential(key, "") })
+            using (HttpClient client = new HttpClient(handler))
+            using (HttpResponseMessage response = await client.GetAsync(url).ConfigureAwait(false))
+            using (HttpContent content = response.Content)
+            using (Stream stream = await content.ReadAsStreamAsync())
+            using (StreamReader reader = new StreamReader(stream))
+                result = reader.ReadToEnd();
+            return result;
         }
 
         public string GetName() => "Zamzar";
